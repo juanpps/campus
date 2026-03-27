@@ -3,6 +3,8 @@ import { getMateriaData } from "@/lib/data/materias";
 import { MateriaTabsLayout } from "@/components/academico/MateriaTabsLayout";
 import { MateriaBlogLayout } from "@/components/academico/MateriaBlogLayout";
 
+export const dynamic = 'force-dynamic';
+
 // Componente Factory: Encamina la UI dependiendo de la metadada (Genius UX)
 export default async function MateriaFactoryPage({ params }: { params: Promise<{ materiaId: string }> }) {
     const resolvedParams = await params;

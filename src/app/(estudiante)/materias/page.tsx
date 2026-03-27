@@ -5,6 +5,8 @@ import Link from "next/link";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { Book } from "lucide-react";
 
+export const dynamic = 'force-dynamic';
+
 const getMaterias = unstable_cache(
   async () => {
     const snap = await adminDb.collection("materias").limit(10).get(); // Progressive Disclosure base limit

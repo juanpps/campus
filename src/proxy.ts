@@ -8,7 +8,7 @@ const ROLE_ROUTES = {
     superadmin: "/superadmin-dashboard",
 };
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
     const session = request.cookies.get("__session")?.value;
     const path = request.nextUrl.pathname;
 

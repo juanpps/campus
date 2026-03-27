@@ -101,8 +101,8 @@ function BridgeContent() {
     try {
       setLoading(true);
       const userCredential = await signInWithGoogle();
-      if (userCredential?.user) {
-        setUserUid(userCredential.user.uid);
+      if (userCredential) {
+        setUserUid(userCredential.uid);
         toast.success("Autenticación exitosa. Completa tus datos.");
         setStep(2); // Avanzar al formulario de datos
       }
@@ -236,7 +236,7 @@ function BridgeContent() {
                       <MapPin className="h-4 w-4" /> Municipio
                     </FormLabel>
                     <Popover open={openMunicipio} onOpenChange={setOpenMunicipio}>
-                      <PopoverTrigger asChild>
+                      <PopoverTrigger>
                         <FormControl>
                           <Button
                             variant="outline"
