@@ -4,7 +4,7 @@ import {
     signOut as firebaseSignOut,
     User,
 } from "firebase/auth";
-import { auth } from "./client";
+export { auth } from "./client";
 
 const googleProvider = new GoogleAuthProvider();
 
