@@ -68,5 +68,9 @@ El objetivo es optimizar el consumo de tokens del agente primario en fases de de
 3. **Invocar** la skill `cloud-ollama-delegator` con el prompt de tarea.
 4. **Capturar** el output y validar la calidad.
 5. **Verificar** código con `npx tsc --noEmit` + `npm run lint` (Ciclo Dry Run).
-6. **Integrar** el resultado en el flujo de trabajo principal.
-7. **Fallback:** `$$qwen3.5:cloud` → `$$groq-llama` → `$$gemini-pro` → `$$open-geminipro` → AntiGravity.
+6. **Fase de Revisión y Refactorización Activa (OBLIGATORIO):** Cuando recibas código funcional de un sub-agente y pase los Dry Runs, TIENES LA OBLIGACIÓN de someter ese código a un refactor profundo, inspeccionando y reescribiendo el código para garantizar:
+   - **Rendimiento Next.js App Router:** Identificar uso de `next/dynamic` para componentes pesados, asegurar consultas paralelas (evitar N+1 queries), y uso estricto y justificado de `use client`.
+   - **Identidad Raptor (shadcn/ui & Tailwind):** Mejorar UI usando tokens correctos (variables semánticas, modo oscuro) y primitivos shadcn, respetando la navegación adaptativa.
+   - **Accesibilidad (a11y):** Añadir ARIA, manejo de foco (Focus rings) y contraste mínimo requerido.
+7. **Integrar** el resultado optimizado (Nivel Producción) en el flujo de trabajo principal. Ningún otro modelo realiza esta revisión final.
+8. **Fallback:** `$$qwen3.5:cloud` → `$$groq-llama` → `$$gemini-pro` → `$$open-geminipro` → AntiGravity.
