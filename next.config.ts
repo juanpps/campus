@@ -35,9 +35,10 @@ const config = withPWA({
   disable: process.env.NODE_ENV === "development",
 })(nextConfig);
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
-});
+import withBundleAnalyzer from "@next/bundle-analyzer";
 
-export default withBundleAnalyzer(config);
+const configWithAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+})(config);
+
+export default configWithAnalyzer;

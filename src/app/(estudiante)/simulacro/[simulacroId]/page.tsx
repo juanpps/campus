@@ -3,6 +3,16 @@
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { Loader2, Clock } from "lucide-react";
+import dynamic from "next/dynamic";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const DriveFileViewer = dynamic(
+    () => import("../../../components/shared/DriveFileViewer").then((mod) => mod.DriveFileViewer),
+    {
+        loading: () => <Skeleton className="w-full h-[600px] rounded-lg" />,
+        ssr: false
+    }
+);
 
 export default function SplitViewVisorPage() {
     const [timeLeft, setTimeLeft] = useState(3600); // 1 hora
@@ -39,12 +49,12 @@ export default function SplitViewVisorPage() {
 
     return (
         <div className="flex flex-col lg:flex-row h-screen bg-background animate-in slide-in-from-bottom-4">
-            {/* 50% Izquierda: Visor PDF de Google Drive */}
+            {/* Visor PDF de Google Drive con Lazy Loading */}
             <div className="flex-1 lg:w-1/2 h-[50vh] lg:h-full border-b lg:border-b-0 lg:border-r relative">
-                <iframe
-                    className="w-full h-full"
-                    src="/api/drive/imagen/mock-pdf-id?type=pdf"
+                <DriveFileViewer
+                    fileId="mock-pdf-id"
                     title="Cuadernillo ICFES"
+                    className="h-full"
                 />
                 {/* Timer UI Overlay Top-Right (Heurística de estrés controlada) */}
                 <div className={`absolute top-4 right-4 z-10 px-4 py-2 rounded-full font-bold shadow-lg flex items-center bg-background/90 backdrop-blur-md border 

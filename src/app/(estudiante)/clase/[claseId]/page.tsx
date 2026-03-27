@@ -1,9 +1,18 @@
 import { notFound } from "next/navigation";
 import { adminDb } from "@/lib/firebase/admin";
 import { unstable_cache } from "next/cache";
+import dynamic from "next/dynamic";
+import { Skeleton } from "@/components/ui/skeleton";
 
-// Usamos el VideoPlayer stub creado por el sub-agente en Fase 05
-// Si no existe compilable real, asumimos un div semántico
+// Importación dinámica para optimizar el bundle inicial
+const VideoPlayer = dynamic(
+    () => import("../../../components/shared/VideoPlayer").then((mod) => mod.VideoPlayer),
+    {
+        loading: () => <Skeleton className="w-full aspect-video rounded-lg" />,
+        ssr: false
+    }
+);
+
 import { ClaseClientWrapper } from "@/components/academico/ClaseClientWrapper";
 
 const getClaseData = unstable_cache(
@@ -31,15 +40,11 @@ export default async function ClaseViewerPage({ params }: { params: Promise<{ cl
                 <h1 className="text-3xl font-bold">{clase.titulo}</h1>
             </header>
 
-            {/* VideoPlayer (Drive CDN Proxy) */}
-            <div className="aspect-video bg-black rounded-lg overflow-hidden border">
-                {/* Placeholder para VideoPlayer de Fase 05 importado vía Drive */}
-                <iframe
-                    className="w-full h-full"
-                    src={`/api/drive/imagen/${clase.driveId}?type=video`}
-                    title={clase.titulo}
-                />
-            </div>
+            {/* VideoPlayer (Drive CDN Proxy) con Lazy Loading */}
+            <VideoPlayer
+                driveId={clase.driveId}
+                title={clase.titulo}
+            />
 
             {/* Wrapper Cliente para Genius UX (Loading / Feedback) */}
             <ClaseClientWrapper clase={clase} />
