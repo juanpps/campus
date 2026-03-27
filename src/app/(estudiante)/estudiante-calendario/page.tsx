@@ -1,4 +1,6 @@
-﻿import dynamic from "next/dynamic";
+﻿"use client";
+
+import dynamic from "next/dynamic";
 
 const SharedCalendar = dynamic(() => import("@/components/shared/Calendar").then(mod => mod.SharedCalendar), {
   ssr: false,

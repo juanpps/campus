@@ -8,8 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 const VideoPlayer = dynamic(
     () => import("../../../components/shared/VideoPlayer").then((mod) => mod.VideoPlayer),
     {
-        loading: () => <Skeleton className="w-full aspect-video rounded-lg" />,
-        ssr: false
+        loading: () => <Skeleton className="w-full aspect-video rounded-lg" />
     }
 );
 

@@ -135,7 +135,7 @@ function BridgeContent() {
       }, { merge: true });
 
       toast.success("¡Registro completado exitosamente!");
-      router.push("/dashboard");
+      router.push("/estudiante-dashboard");
     } catch (error) {
       console.error(error);
       toast.error("Error al guardar tus datos. Intenta de nuevo.");
