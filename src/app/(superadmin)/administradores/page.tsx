@@ -97,12 +97,14 @@ export default function AdministradoresPage() {
             <RefreshCw className={`h-4 w-4 ${fetching ? "animate-spin" : ""}`} />
           </Button>
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogTrigger asChild>
-              <Button className="bg-raptor hover:bg-raptor/90 text-white">
-                <UserPlus className="mr-2 h-4 w-4" />
-                Nuevo Administrador
-              </Button>
-            </DialogTrigger>
+            <DialogTrigger
+              render={
+                <Button className="bg-raptor hover:bg-raptor/90 text-white">
+                  <UserPlus className="mr-2 h-4 w-4" />
+                  Nuevo Administrador
+                </Button>
+              }
+            />
             <DialogContent>
               <DialogHeader>
                 <DialogTitle>Aprovisionar Administrador</DialogTitle>
