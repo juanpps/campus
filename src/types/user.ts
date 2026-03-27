@@ -15,5 +15,9 @@ export interface RaptorUser {
     fecha_registro: Date;
     estado: UserStatus;
     cohorte_id: string;
+    departamento: string;
+    municipio: string;
+    documento: string;
+    telefono: string;
     fcm_token?: string;
 }
