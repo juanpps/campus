@@ -5,7 +5,7 @@ const ROLE_ROUTES = {
     estudiante: "/estudiante-dashboard",
     tutor: "/tutor-dashboard",
     admin: "/admin-dashboard",
-    superadmin: "/superadmin-dashboard"
+    superadmin: "/superadmin-dashboard",
 };
 
 export async function middleware(request: NextRequest) {

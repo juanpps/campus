@@ -16,11 +16,10 @@ export default async function DashboardDispatcher() {
 
     // Asumimos que el session cookie es el ID de sesión o token. 
     // Usaremos un placeholder o lógica de sesión aquí:
-    try {
-        // Lógica simplificada: si no hay rol determinado aún, vamos a /bridge
-        // En producción, el middleware ya pre-valida la existencia de la sesión.
-        redirect("/bridge");
-    } catch (error) {
-        redirect("/login");
-    }
+    // TODO: Leer rol real desde Custom Claims en Auth. 
+    // Por ahora, usamos el flujo de /bridge para determinar el destino dinámico.
+    redirect("/bridge");
+} catch (error) {
+    redirect("/login");
+}
 }

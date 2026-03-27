@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const DriveFileViewer = dynamic(
-    () => import("../../../components/shared/DriveFileViewer").then((mod) => mod.DriveFileViewer),
+    () => import("@/components/shared/DriveFileViewer").then((mod) => mod.DriveFileViewer),
     {
         loading: () => <Skeleton className="w-full h-[600px] rounded-lg" />,
         ssr: false

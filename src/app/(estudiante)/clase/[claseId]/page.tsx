@@ -6,7 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 // Importación dinámica para optimizar el bundle inicial
 const VideoPlayer = dynamic(
-    () => import("../../../components/shared/VideoPlayer").then((mod) => mod.VideoPlayer),
+    () => import("@/components/shared/VideoPlayer").then((mod) => mod.VideoPlayer),
     {
         loading: () => <Skeleton className="w-full aspect-video rounded-lg" />
     }
