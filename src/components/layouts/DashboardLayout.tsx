@@ -1,10 +1,14 @@
 import { Sidebar } from "@/components/navigation/Sidebar";
 import { BottomNav } from "@/components/navigation/BottomNav";
 import { TopBar } from "@/components/navigation/TopBar";
+import { BannerModal } from "@/components/shared/BannerModal";
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
     return (
         <div className="flex min-h-screen w-full bg-background">
+            {/* Modal global asíncrono */}
+            <BannerModal />
+
             {/* Navegación Desktop */}
             <Sidebar />
 
