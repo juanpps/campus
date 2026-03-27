@@ -15,7 +15,11 @@ test.describe('QA Visual Automatizado - VISTA.md', () => {
         { name: 'tutor-clases-nueva', url: '/clases/nueva' },
         { name: 'admin-estudiantes', url: '/estudiantes' },
         { name: 'fase07-tutor-simulacros', url: '/simulacros/nuevo' },
-        { name: 'fase07-estudiante-splitview', url: '/simulacro/mock-eval-01' }
+        { name: 'fase07-estudiante-splitview', url: '/simulacro/mock-eval-01' },
+        { name: 'fase08-estudiante-calendario', url: '/calendario' },
+        { name: 'fase08-estudiante-muro-anuncios', url: '/mis-anuncios' },
+        { name: 'fase08-admin-crear-anuncio', url: '/anuncios' },
+        { name: 'fase09-notification-center', url: '/' }
     ];
 
     for (const vista of vistas) {

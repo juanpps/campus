@@ -27,7 +27,7 @@ service cloud.firestore {
       
       // LA CORONA DEL SISTEMA: Sub-colección de claves
       // BLOQUEADA AL CLIENTE SIEMPRE.
-      match /claves/{document=**} {
+      match /privado/clave {
         allow read, write: if false; 
         // Solo el backend con Admin SDK puede leer la clave de respuestas para calificar.
       }

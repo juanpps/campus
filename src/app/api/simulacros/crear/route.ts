@@ -20,6 +20,26 @@ export async function POST(req: Request) {
             respuestas: claves // ["A", "C", "D", ...]
         });
 
+        // 3. Trigger FCM: Notificar disponibilidad del simulacro (no-bloqueante)
+        try {
+            const baseUrl = process.env.VERCEL_URL
+                ? `https://${process.env.VERCEL_URL}`
+                : "http://localhost:3000";
+            fetch(`${baseUrl}/api/notifications/send`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    tokens: [], // TODO: Poblar con tokens FCM de estudiantes desde Firestore
+                    title: "Nuevo Simulacro Disponible",
+                    body: `"${titulo}" está listo para resolver.`,
+                    url: `/simulacro/${docRef.id}`,
+                    tag: `simulacro-${docRef.id}`,
+                }),
+            }).catch((err) => console.warn("[FCM Trigger] Simulacro:", err));
+        } catch (fcmErr) {
+            console.warn("[FCM Trigger] Error no-crítico:", fcmErr);
+        }
+
         return NextResponse.json({ id: docRef.id, success: true });
     } catch (error) {
         console.error("API Error creando simulacro:", error);

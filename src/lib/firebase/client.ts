@@ -10,8 +10,19 @@ const firebaseConfig = {
     appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Evita inicializar múltiples veces en dev (hot reload)
-const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
+let app;
+
+try {
+    if (!firebaseConfig.apiKey) {
+        if (typeof window !== "undefined") console.warn("Firebase no inicializado: Faltan credenciales (Zero-Touch prep mode).");
+        app = getApps().length > 0 ? getApp() : initializeApp({ apiKey: "mock-key", projectId: "mock-id" }, "mock-app");
+    } else {
+        app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
+    }
+} catch (error) {
+    console.warn("Firebase fallback activado:", error);
+    app = getApps().length > 0 ? getApp() : initializeApp({ apiKey: "mock-key", projectId: "mock-id" }, "mock-app");
+}
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);

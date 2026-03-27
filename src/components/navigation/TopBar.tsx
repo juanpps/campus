@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import { useUIStore } from "@/stores/theme-store";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
+import { NotificationCenter } from "@/components/shared/NotificationCenter";
 
 export function TopBar() {
     const { setTheme, theme } = useTheme();
@@ -22,6 +23,7 @@ export function TopBar() {
                 </div>
 
                 <div className="flex items-center space-x-2">
+                    <NotificationCenter />
                     <Button
                         variant="ghost"
                         size="icon"

@@ -9,6 +9,7 @@ export function ThemeProvider({ children, ...props }: React.ComponentProps<typeo
 
     return (
         <NextThemesProvider
+            suppressHydrationWarning
             forcedTheme={theme !== 'system' ? theme : undefined}
             enableSystem={true}
             {...props}

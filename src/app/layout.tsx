@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Campus Raptor PREICFES",
-  description:
-    "Plataforma educativa PREICFES — Método Raptor. Prepárate para el ICFES con la mejor metodología.",
+  title: "Campus Online | Método Raptor",
+  description: "Plataforma educativa de alto rendimiento para preparación Pre-ICFES. Disciplina, estrategia y resultados.",
+  keywords: ["Pre-ICFES", "Método Raptor", "Educación", "Pruebas Saber 11"],
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -38,6 +38,7 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -49,7 +50,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body className="min-h-full flex flex-col bg-background text-foreground" suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
           <Toaster richColors position="top-center" />
